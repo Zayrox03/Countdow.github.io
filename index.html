@@ -35,7 +35,13 @@
     <audio id="inicio" src="BTS - Dynamite (slowed + reverb) - CloudyKvibes.mp3"></audio>
   </div>
 
+  <button id="detenerInicio">Detener música</button>
+
+
   <script>
+
+    let musicaDetenida = false;
+
     function actualizarCountdown() {
       const fechaActual = new Date();
       const fechaObjetivo = new Date("2025-08-15T00:00:00-04:00");
@@ -55,6 +61,7 @@
         document.getElementById("horas").textContent = 0;
         document.getElementById("minutos").textContent = 0;
         document.getElementById("segundos").textContent = 0;
+        
 
         // Mostrar animación
         animacion.classList.remove("oculto");
@@ -74,10 +81,11 @@
         return;
       }
 
-      // Reproducir la música "inicio" mientras el countdown está activo
-      if (inicio.paused) {
-        inicio.play(); // Inicia la música "inicio" si está pausada
-      }
+      if (!musicaDetenida && inicio.paused) {
+      inicio.volume = 0.3;
+      inicio.loop = true;
+      inicio.play();
+    }
 
       // Asegurar que la animación esté oculta mientras el countdown sigue activo
       animacion.classList.add("oculto");
@@ -110,6 +118,13 @@
         });
       }, 250);
     }
+
+    document.getElementById("detenerInicio").addEventListener("click", function () {
+    const inicio = document.getElementById("inicio");
+    inicio.pause();
+    inicio.currentTime = 0;
+    musicaDetenida = true; // Evita que vuelva a reproducirse
+  });
 
     lanzarConfetiContinuo();
     setInterval(actualizarCountdown, 1000);
