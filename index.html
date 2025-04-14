@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuenta regresiva</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<body>
+
+  <div class="container">
+    <div class="countdown" id="countdown">
+      <div><span id="dias">312</span><p>dias</p></div>
+      <div><span id="horas">24</span><p>horas</p></div>
+      <div><span id="minutos">20</span><p>minutos</p></div>
+      <div><span id="segundos">60</span><p>segundos</p></div>
+    </div>
+  </div>
+
+  <div class="heart"></div>
+
+  <!-- ✅ Div correctamente cerrado -->
+  <div id="animacion" class="oculto">
+    <h1>¡Felicidades!</h1>
+    <p>Te amo mucho cariño</p>
+    <img src="gif.gif" alt="Confeti gif">
+  </div>
+
+  <div class="musica">
+    <audio id="musica" src="Feliz cumpleaños coreano.. 3😍💙💙 - Sogyna Gutiérrez.mp3"></audio>
+  </div>
+
+  <div class="inicio">
+    <audio id="inicio" src="BTS - Dynamite (slowed + reverb) - CloudyKvibes.mp3"></audio>
+  </div>
+
+  <script>
+    function actualizarCountdown() {
+      const fechaActual = new Date();
+      const fechaObjetivo = new Date("2025-08-15T00:00:00-04:00");
+      const diferencia = fechaObjetivo - fechaActual;
+
+      const inicio = document.getElementById("inicio");
+      const animacion = document.getElementById("animacion");
+      const countdown = document.querySelector(".countdown");
+
+      inicio.volume =0.3
+      musica.volume = 0.5
+
+      if (diferencia <= 0) {
+        clearInterval(fechaObjetivo);
+
+        document.getElementById("dias").textContent = 0;
+        document.getElementById("horas").textContent = 0;
+        document.getElementById("minutos").textContent = 0;
+        document.getElementById("segundos").textContent = 0;
+
+        // Mostrar animación
+        animacion.classList.remove("oculto");
+        animacion.classList.add("visible");
+
+        // Ocultar countdown
+        countdown.style.display = "none";
+
+        // Detener la música "inicio" cuando el contador llegue a 0
+        inicio.pause(); // Detiene la música "inicio"
+        inicio.currentTime = 0; // Vuelve al inicio
+
+        const musica = document.getElementById("musica");
+        musica.loop = true;
+        musica.play(); // Reproduce la música "musica" al llegar a 0
+
+        return;
+      }
+
+      // Reproducir la música "inicio" mientras el countdown está activo
+      if (inicio.paused) {
+        inicio.play(); // Inicia la música "inicio" si está pausada
+      }
+
+      // Asegurar que la animación esté oculta mientras el countdown sigue activo
+      animacion.classList.add("oculto");
+      animacion.classList.remove("visible");
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+      document.getElementById("dias").textContent = dias;
+      document.getElementById("horas").textContent = horas;
+      document.getElementById("minutos").textContent = minutos;
+      document.getElementById("segundos").textContent = segundos;
+    }
+
+    function lanzarConfetiContinuo() {
+      setInterval(() => {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+        });
+      }, 250);
+    }
+
+    lanzarConfetiContinuo();
+    setInterval(actualizarCountdown, 1000);
+  </script>
+
+</body>
+</html>
