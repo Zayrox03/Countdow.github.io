@@ -104,17 +104,17 @@
 
 function lanzarConfetiContinuo() {
   setInterval(() => {
-    const posiciones = [0.1, 0.3, 0.5, 0.7, 0.9]; // Diferentes puntos horizontales
+    const posiciones = [0, 0.2, 0.4, 0.6, 0.8, 1]; // de izquierda (0) a derecha (1)
 
     posiciones.forEach(x => {
       confetti({
-        particleCount: 5,
-        angle: 90,
-        spread: 60,
-        origin: { x: x, y: 0 }
+        particleCount: 4,
+        angle: 90,         // Confeti cae verticalmente
+        spread: 45,        // Ángulo de dispersión
+        origin: { x: x, y: 0 }, // Desde arriba (y: 0)
       });
     });
-  }, 400);
+  }, 500); // Ajusta el tiempo si quieres más o menos frecuencia
 }
 
     document.getElementById("detenerInicio").addEventListener("click", function () {
