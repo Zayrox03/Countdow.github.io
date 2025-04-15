@@ -102,19 +102,19 @@
       document.getElementById("segundos").textContent = segundos;
     }
 
-function lanzarConfetiVertical() {
-  const posicionesX = [0, 0.2, 0.4, 0.6, 0.8, 1]; // 6 puntos desde la izquierda (0) hasta la derecha (1)
-
+  function lanzarConfetiContinuo() {
   setInterval(() => {
-    posicionesX.forEach(x => {
+    const posiciones = [0.1, 0.3, 0.5, 0.7, 0.9]; // Diferentes puntos horizontales
+
+    posiciones.forEach(x => {
       confetti({
-        particleCount: 5,       // Puedes ajustar este número
-        angle: 90,              // Vertical (desde arriba hacia abajo)
-        spread: 45,             // Ángulo de dispersión (más alto = más ancho)
-        origin: { x: x, y: 0 }, // y: 0 = desde arriba
+        particleCount: 5,
+        angle: 90,
+        spread: 60,
+        origin: { x: x, y: 0 }
       });
     });
-  }, 500); // Ajusta frecuencia según lo que quieras
+  }, 400);
 }
 
     document.getElementById("detenerInicio").addEventListener("click", function () {
@@ -127,6 +127,27 @@ function lanzarConfetiVertical() {
     lanzarConfetiContinuo();
     setInterval(actualizarCountdown, 1000);
   </script>
+
+  <script>
+  function lanzarConfetiVertical() {
+    const posicionesX = [0, 0.2, 0.4, 0.6, 0.8, 1]; // posiciones horizontales
+
+    setInterval(() => {
+      posicionesX.forEach(x => {
+        confetti({
+          particleCount: 10,
+          angle: 90,          // Confeti hacia abajo
+          spread: 45,         // Dispersión lateral
+          startVelocity: 30,  // Velocidad inicial
+          origin: { x: x, y: 0 }, // Lanzar desde arriba
+        });
+      });
+    }, 400); // cada 400ms lanza una ronda
+  }
+
+  lanzarConfetiVertical();
+</script>
+
 
 </body>
 </html>
