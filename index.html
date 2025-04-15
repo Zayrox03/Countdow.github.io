@@ -102,22 +102,20 @@
       document.getElementById("segundos").textContent = segundos;
     }
 
-    function lanzarConfetiContinuo() {
-      setInterval(() => {
-        confetti({
-          particleCount: 5,
-          angle: 0,
-          spread: 55,
-          origin: { x: 0 },
-        });
-        confetti({
-          particleCount: 5,
-          angle: 180,
-          spread: 55,
-          origin: { x: 1,  y: 0.5},
-        });
-      }, 250);
-    }
+function lanzarConfetiContinuo() {
+  setInterval(() => {
+    const posiciones = [0.1, 0.3, 0.5, 0.7, 0.9]; // Diferentes puntos horizontales
+
+    posiciones.forEach(x => {
+      confetti({
+        particleCount: 5,
+        angle: 90,
+        spread: 60,
+        origin: { x: x, y: 0 }
+      });
+    });
+  }, 400);
+}
 
     document.getElementById("detenerInicio").addEventListener("click", function () {
     const inicio = document.getElementById("inicio");
