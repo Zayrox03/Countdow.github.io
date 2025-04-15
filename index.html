@@ -20,7 +20,6 @@
 
   <div class="heart"></div>
 
-  <!-- ✅ Div correctamente cerrado -->
   <div id="animacion" class="oculto">
     <h1>¡Felicidades!</h1>
     <p>Te amo mucho cariño</p>
@@ -63,20 +62,17 @@
         document.getElementById("segundos").textContent = 0;
         
 
-        // Mostrar animación
         animacion.classList.remove("oculto");
         animacion.classList.add("visible");
 
-        // Ocultar countdown
         countdown.style.display = "none";
 
-        // Detener la música "inicio" cuando el contador llegue a 0
-        inicio.pause(); // Detiene la música "inicio"
-        inicio.currentTime = 0; // Vuelve al inicio
+        inicio.pause(); 
+        inicio.currentTime = 0; 
 
         const musica = document.getElementById("musica");
         musica.loop = true;
-        musica.play(); // Reproduce la música "musica" al llegar a 0
+        musica.play(); 
 
         return;
       }
@@ -87,7 +83,6 @@
       inicio.play();
     }
 
-      // Asegurar que la animación esté oculta mientras el countdown sigue activo
       animacion.classList.add("oculto");
       animacion.classList.remove("visible");
 
@@ -103,14 +98,14 @@
     }
 
 function lanzarConfetiVertical() {
-  const posicionesX = [0, 0.2, 0.4, 0.6, 0.8, 1]; // posiciones horizontales
+  const posicionesX = [0, 0.2, 0.4, 0.6, 0.8, 1];
 
   setInterval(() => {
     posicionesX.forEach(x => {
-      myConfetti({ // <-- usa la instancia que se ajusta al tamaño
-        particleCount: 10,
+      myConfetti({
+        particleCount: 15,
         angle: 90,
-        spread: 45,
+        spread: 60,  // Incrementar la dispersión para cobertura completa
         startVelocity: 30,
         origin: { x: x, y: 0 },
       });
@@ -118,14 +113,14 @@ function lanzarConfetiVertical() {
   }, 400);
 }
 
-  var myConfetti = confetti.create(null, { resize: true });
+  var myConfetti = confetti.create(window, { resize: true });
   lanzarConfetiVertical();
 
     document.getElementById("detenerInicio").addEventListener("click", function () {
     const inicio = document.getElementById("inicio");
     inicio.pause();
     inicio.currentTime = 0;
-    musicaDetenida = true; // Evita que vuelva a reproducirse
+    musicaDetenida = true;
   });
     
     setInterval(actualizarCountdown, 1000);
