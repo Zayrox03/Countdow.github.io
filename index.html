@@ -118,9 +118,8 @@ function lanzarConfetiVertical() {
   }, 400);
 }
 
-  lanzarConfetiVertical();
-
   var myConfetti = confetti.create(null, { resize: true });
+  lanzarConfetiVertical();
 
     document.getElementById("detenerInicio").addEventListener("click", function () {
     const inicio = document.getElementById("inicio");
@@ -128,8 +127,7 @@ function lanzarConfetiVertical() {
     inicio.currentTime = 0;
     musicaDetenida = true; // Evita que vuelva a reproducirse
   });
-
-    lanzarConfetiVertical();
+    
     setInterval(actualizarCountdown, 1000);
   </script>
 
