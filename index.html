@@ -102,34 +102,7 @@
       document.getElementById("segundos").textContent = segundos;
     }
 
-  function lanzarConfetiContinuo() {
-  setInterval(() => {
-    const posiciones = [0.1, 0.3, 0.5, 0.7, 0.9]; // Diferentes puntos horizontales
-
-    posiciones.forEach(x => {
-      confetti({
-        particleCount: 5,
-        angle: 90,
-        spread: 60,
-        origin: { x: x, y: 0 }
-      });
-    });
-  }, 400);
-}
-
-    document.getElementById("detenerInicio").addEventListener("click", function () {
-    const inicio = document.getElementById("inicio");
-    inicio.pause();
-    inicio.currentTime = 0;
-    musicaDetenida = true; // Evita que vuelva a reproducirse
-  });
-
-    lanzarConfetiContinuo();
-    setInterval(actualizarCountdown, 1000);
-  </script>
-
-  <script>
-  function lanzarConfetiVertical() {
+function lanzarConfetiVertical() {
     const posicionesX = [0, 0.2, 0.4, 0.6, 0.8, 1]; // posiciones horizontales
 
     setInterval(() => {
@@ -146,11 +119,19 @@
   }
 
   lanzarConfetiVertical();
-  
+
   var myConfetti = confetti.create(null, { resize: true });
 
-</script>
+    document.getElementById("detenerInicio").addEventListener("click", function () {
+    const inicio = document.getElementById("inicio");
+    inicio.pause();
+    inicio.currentTime = 0;
+    musicaDetenida = true; // Evita que vuelva a reproducirse
+  });
 
+    lanzarConfetiVertical();
+    setInterval(actualizarCountdown, 1000);
+  </script>
 
 </body>
 </html>
