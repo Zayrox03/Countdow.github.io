@@ -103,20 +103,20 @@
     }
 
 function lanzarConfetiVertical() {
-    const posicionesX = [0, 0.2, 0.4, 0.6, 0.8, 1]; // posiciones horizontales
+  const posicionesX = [0, 0.2, 0.4, 0.6, 0.8, 1]; // posiciones horizontales
 
-    setInterval(() => {
-      posicionesX.forEach(x => {
-        confetti({
-          particleCount: 10,
-          angle: 90,          // Confeti hacia abajo
-          spread: 45,         // Dispersión lateral
-          startVelocity: 30,  // Velocidad inicial
-          origin: { x: x, y: 0 }, // Lanzar desde arriba
-        });
+  setInterval(() => {
+    posicionesX.forEach(x => {
+      myConfetti({ // <-- usa la instancia que se ajusta al tamaño
+        particleCount: 10,
+        angle: 90,
+        spread: 45,
+        startVelocity: 30,
+        origin: { x: x, y: 0 },
       });
-    }, 400); // cada 400ms lanza una ronda
-  }
+    });
+  }, 400);
+}
 
   lanzarConfetiVertical();
 
