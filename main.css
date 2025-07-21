@@ -133,15 +133,15 @@ h1 {
     background-color: #e91e63;
   }
   
-canvas {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  width: 100vh !important;
-  height: 100vh !important;
-  pointer-events: none;
-  z-index: 9999;
-}
+  canvas {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    height: auto !important;
+    pointer-events: none;
+    z-index: 0;
+  }
 
 
 /* Animación suave de entrada */
